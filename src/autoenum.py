@@ -33,10 +33,38 @@ class alias(auto):
             super(alias, self).__setattr__(attr_name, attr_value)
 
     def __getattribute__(self, attr_name: str):
+        """
+        Refer these lines in Python 3.10.9 enum.py:
+
+        class _EnumDict(dict):
+            ...
+            def __setitem__(self, key, value):
+                ...
+                elif not _is_descriptor(value):
+                    ...
+                    if isinstance(value, auto):
+                        if value.value == _auto_null:
+                            value.value = self._generate_next_value(
+                                    key,
+                                    1,
+                                    len(self._member_names),
+                                    self._last_values[:],
+                                    )
+                            self._auto_called = True
+                        value = value.value
+                    ...
+                ...
+            ...
+
+        """
         if attr_name == 'value':
             if object.__getattribute__(self, 'enum_name') is None:
                 ## Gets _auto_null as alias inherits auto class but does not set `value` class member; refer enum.py:142
-                return object.__getattribute__(self, 'value')
+                try:
+                    return object.__getattribute__(self, 'value')
+                except Exception as e:
+                    from enum import _auto_null
+                    return _auto_null
             return self
         return object.__getattribute__(self, attr_name)
 
