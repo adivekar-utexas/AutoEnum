@@ -10,7 +10,7 @@ authors = [
 ]
 description = "A fuzzy-matched, Pydantic-compatible enum library for Python 3."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
