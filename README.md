@@ -1,5 +1,5 @@
 # AutoEnum
-A fuzzy-matching, Pydantic compatible enum library for Python 3.
+A fuzzy-matched, Pydantic-compatible enum library for Python 3.
 
 ## What's an AutoEnum?
 `AutoEnum` is a replacement for Python's `Enum`, which has [many problems](https://www.acooke.org/cute/Pythonssad0.html). 
