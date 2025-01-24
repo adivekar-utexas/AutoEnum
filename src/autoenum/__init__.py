@@ -1,5 +1,13 @@
 from enum import Enum, auto
-from typing import *
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+    Set,
+    Tuple,
+    Union,
+)
 
 
 class alias(auto):
@@ -129,8 +137,8 @@ class AutoEnum(str, Enum):
         return not cls.matches_any(enum_value)
 
     @classmethod
-    def display_names(cls, **kwargd) -> str:
-        return str([enum_value.display_name(**kwargd) for enum_value in list(cls)])
+    def display_names(cls, **kwargs) -> str:
+        return str([enum_value.display_name(**kwargs) for enum_value in list(cls)])
 
     def display_name(self, *, sep: str = " ") -> str:
         return sep.join(
